@@ -1,5 +1,4 @@
 // import { useEffect, useState } from 'react';
-import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
 
@@ -13,22 +12,13 @@ import { StrongText } from './components/StrongText';
 function App() {
   const {tg, getVisitCount, setVisitCount} = useTelegram();
 
-  // const [countState, setCountState] = useState(0);
-
-  // useEffect(() => {
-  //   // setCountState(count);
-  // }, [count]);
 
   const handleInc = () =>  {
-    // console.log('handleInc', tg);
-    console.log('handleInc', setVisitCount(1));
-    // setCountState(prev => prev+1)
+    setVisitCount(1)
   }
 
   const handleDec = () =>  {
-    // console.log('handleDec', tg);
-    console.log('handleDec', setVisitCount(-1));
-    // setCountState(prev => prev-1)
+    setVisitCount(-1)
   }
 
   const handleClick = () =>  {
@@ -37,17 +27,19 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="">
       <header>
         <h1>
-          {/* Hello, {tg.initDataUnsafe.user.first_name} */}
+          Hello, {tg.initDataUnsafe.user.first_name}
         </h1>
       </header>
 
       <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
-      <button onClick={handleInc}>Inc</button>
-      <button onClick={handleDec}>Dec</button>
-      <button onClick={handleClick}>GET COUNT</button>
+      <div className='flex flex-col gap-8'>
+        <button onClick={handleInc}>Inc</button>
+        <button onClick={handleDec}>Dec</button>
+        <button onClick={handleClick}>GET COUNT</button>
+      </div>
     </div>
   );
 }
