@@ -11,13 +11,13 @@ import { StrongText } from './components/StrongText';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, setVisitCount, getVisitCount, count} = useTelegram();
+  const {tg, getVisitCount, count} = useTelegram();
 
   const [countState, setCountState] = useState(0);
 
-  // useEffect(() => {
-  //   // setCountState(count);
-  // }, [count]);
+  useEffect(() => {
+    // setCountState(count);
+  }, [count]);
 
   const handleInc = () =>  {
     // console.log('handleInc', tg);
