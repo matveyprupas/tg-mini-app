@@ -18,8 +18,20 @@ export const useVisitCount = () => {
 
       console.log('useEffect callback end', error, value);
 
-      setVisits(value);
-      setCount(value[userId] ? value[userId] : 0)
+      
+      // setCount(value[userId] ? value[userId] : 0)
+      
+      if(typeof value === 'object') {
+        setVisits(value);
+        setCount(value[userId]);
+      } else {
+        const newValue = {
+          userId: 0
+        };
+
+        setVisits(newValue);
+        setCount(newValue[userId]);
+      }
     });
   }, [userId, tg.CloudStorage]);
 
