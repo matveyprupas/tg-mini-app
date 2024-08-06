@@ -1,6 +1,7 @@
 // import { useEffect, useState } from 'react';
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
+import { Button } from './components/Button';
 
 
 // Сделать телеграм веб апп, который:
@@ -27,19 +28,21 @@ function App() {
   }
 
   return (
-    <div className="">
+    <div className="text-center">
       <header>
-        <h1>
+        <h1 className='text-xl font-bold'>
           Hello, {tg.initDataUnsafe.user.first_name}
         </h1>
       </header>
-
-      <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
-      <div className='flex flex-col gap-8'>
-        <button onClick={handleInc}>Inc</button>
-        <button onClick={handleDec}>Dec</button>
-        <button onClick={handleClick}>GET COUNT</button>
-      </div>
+      
+      <main>
+        <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
+        <div className='flex flex-col gap-4'>
+          <Button onClick={handleInc}>Inc</Button>
+          <Button onClick={handleDec}>Dec</Button>
+          <Button onClick={handleClick}>GET COUNT</Button>
+        </div>
+      </main>
     </div>
   );
 }
