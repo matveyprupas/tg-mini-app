@@ -40,7 +40,7 @@ export const useVisitCount = () => {
   }, [count, tg.CloudStorage]);
 
   const getVisits = () => {
-    return visits;
+    return JSON.stringify(visits);
   }
 
   const getVisitCount = () => {
