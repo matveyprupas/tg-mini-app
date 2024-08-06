@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
@@ -11,29 +11,29 @@ import { StrongText } from './components/StrongText';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount, count} = useTelegram();
+  const {tg, getVisitCount, setVisitCount} = useTelegram();
 
-  const [countState, setCountState] = useState(0);
+  // const [countState, setCountState] = useState(0);
 
-  useEffect(() => {
-    // setCountState(count);
-  }, [count]);
+  // useEffect(() => {
+  //   // setCountState(count);
+  // }, [count]);
 
   const handleInc = () =>  {
     // console.log('handleInc', tg);
-    // console.log('handleInc', setVisitCount(1));
-    setCountState(prev => prev+1)
+    console.log('handleInc', setVisitCount(1));
+    // setCountState(prev => prev+1)
   }
 
   const handleDec = () =>  {
     // console.log('handleDec', tg);
-    // console.log('handleDec', setVisitCount(-1));
-    setCountState(prev => prev-1)
+    console.log('handleDec', setVisitCount(-1));
+    // setCountState(prev => prev-1)
   }
 
   const handleClick = () =>  {
     console.log('handleClick', tg);
-    console.log('handleClick', getVisitCount(-1));
+    console.log('handleClick', getVisitCount());
   }
 
   return (
@@ -44,7 +44,7 @@ function App() {
         </h1>
       </header>
 
-      <p>You have been there <StrongText>{countState}</StrongText> times!</p>
+      <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
       <button onClick={handleInc}>Inc</button>
       <button onClick={handleDec}>Dec</button>
       <button onClick={handleClick}>GET COUNT</button>
