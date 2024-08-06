@@ -13,7 +13,7 @@ import { useVisitCount } from './hooks/useVisitCount';
 
 function App() {
   const {tg} = useTelegram();
-  const {getVisitCount, setVisitCount} = useVisitCount();
+  const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
 
 
   const handleInc = () =>  {
@@ -25,8 +25,12 @@ function App() {
   }
 
   const handleClick = () =>  {
-    console.log('handleClick', tg);
-    console.log('handleClick', getVisitCount());
+    console.log('handleClick', getVisitCount(), tg);
+    // console.log('handleClick', );
+  }
+  const handleClick2 = () =>  {
+    // console.log('handleClick', tg);
+    console.log('handleClick', getVisits());
   }
 
   return (
@@ -43,6 +47,7 @@ function App() {
           <Button onClick={handleInc}>Inc</Button>
           <Button onClick={handleDec}>Dec</Button>
           <Button onClick={handleClick}>GET COUNT</Button>
+          <Button onClick={handleClick2}>GET Visits</Button>
         </div>
       </main>
     </div>

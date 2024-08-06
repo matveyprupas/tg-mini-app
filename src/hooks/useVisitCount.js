@@ -6,6 +6,7 @@ export const useVisitCount = () => {
   const {tg} = useTelegram();
   const userId = tg.initDataUnsafe.user.id
   const [count, setCount] = useState(null);
+  const [visits, setVisits] = useState(null);
   // visitCount = {
   //   [id: string]: count: number
   // }
@@ -17,6 +18,7 @@ export const useVisitCount = () => {
 
       console.log('useEffect callback end', error, value);
 
+      setVisits(value);
       setCount(value[userId] ? value[userId] : 0)
     });
   }, [userId, tg.CloudStorage]);
@@ -27,6 +29,8 @@ export const useVisitCount = () => {
     tg.CloudStorage.getItem('visits', (error, value) => {
       if(error) throw error;
 
+      setVisits(value);
+
       tg.CloudStorage.setItem('visits', {
         ...value,
         userId: count,
@@ -34,6 +38,10 @@ export const useVisitCount = () => {
     });
     
   }, [count, tg.CloudStorage]);
+
+  const getVisits = () => {
+    return visits;
+  }
 
   const getVisitCount = () => {
     return count;
@@ -46,6 +54,7 @@ export const useVisitCount = () => {
   return ({
     tg,
     getVisitCount,
-    setVisitCount
+    setVisitCount,
+    getVisits
   })
 }
