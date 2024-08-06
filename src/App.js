@@ -2,6 +2,7 @@
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
 import { Button } from './components/Button';
+import { useVisitCount } from './hooks/useVisitCount';
 
 
 // Сделать телеграм веб апп, который:
@@ -11,7 +12,8 @@ import { Button } from './components/Button';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount, setVisitCount} = useTelegram();
+  const {tg} = useTelegram();
+  const {getVisitCount, setVisitCount} = useVisitCount();
 
 
   const handleInc = () =>  {
