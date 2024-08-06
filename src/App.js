@@ -1,4 +1,4 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 
@@ -12,14 +12,11 @@ import { useTelegram } from './hooks/useTelegram';
 function App() {
   const {tg, getVisitCount, count} = useTelegram();
 
-  // const [count, setCount] = useState(0);
+  const [countState, setCountState] = useState(count);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const count = await getVisitCount();
-  //     // setCount(count);
-  //   })();
-  // });
+  useEffect(() => {
+    setCountState(count);
+  }, [count]);
 
   const handleClick = () =>  {
     console.log('handleClick', tg);
@@ -33,7 +30,7 @@ function App() {
         </h1>
       </header>
 
-      <p>You have been there {count} times!</p>
+      <p>You have been there {countState} times!</p>
       <button onClick={handleClick}>Button</button>
     </div>
   );
