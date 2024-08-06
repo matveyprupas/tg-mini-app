@@ -14,8 +14,8 @@ export const useTelegram = () => {
 
       console.log('useEffect callback end', error, value);
 
-      if(value && typeof value === 'number') {
-        setCount(value);
+      if(value) {
+        setCount(parseInt(value));
       } else {
         setCount(0);
       }
@@ -23,6 +23,7 @@ export const useTelegram = () => {
   }, []);
 
   useEffect(() => {
+    if(count === null) return;
     tg.CloudStorage.setItem('visitCount', count);
   }, [count]);
 
