@@ -2,7 +2,7 @@
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
 import { Button } from './components/Button';
-import { useVisitCount } from './hooks/useVisitCount';
+// import { useVisitCount } from './hooks/useVisitCount';
 
 
 // Сделать телеграм веб апп, который:
@@ -12,8 +12,8 @@ import { useVisitCount } from './hooks/useVisitCount';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg} = useTelegram();
-  const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
+  const {tg, getVisitCount, setVisitCount} = useTelegram();
+  // const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
 
 
   const handleInc = () =>  {
@@ -28,10 +28,10 @@ function App() {
     console.log('handleClick', getVisitCount(), tg);
     // console.log('handleClick', );
   }
-  const handleClick2 = () =>  {
-    // console.log('handleClick', tg);
-    console.log('handleClick', getVisits());
-  }
+  // const handleClick2 = () =>  {
+  //   // console.log('handleClick', tg);
+  //   console.log('handleClick', getVisits());
+  // }
 
   return (
     <div className="text-center">
@@ -47,7 +47,7 @@ function App() {
           <Button onClick={handleInc}>Inc</Button>
           <Button onClick={handleDec}>Dec</Button>
           <Button onClick={handleClick}>GET COUNT</Button>
-          <Button onClick={handleClick2}>GET Visits</Button>
+          {/* <Button onClick={handleClick2}>GET Visits</Button> */}
         </div>
       </main>
     </div>
