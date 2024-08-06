@@ -1,5 +1,5 @@
-export const StrongText = (props) => {
+export const StrongText = ({children}) => {
   return (
-    <strong>{props.children}</strong>
+    <strong>{children}</strong>
   );
 }

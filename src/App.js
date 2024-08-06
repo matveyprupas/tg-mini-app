@@ -13,7 +13,7 @@ import { StrongText } from './components/StrongText';
 function App() {
   const {tg, setVisitCount, getVisitCount, count} = useTelegram();
 
-  // const [countState, setCountState] = useState(count);
+  const [countState, setCountState] = useState(0);
 
   // useEffect(() => {
   //   // setCountState(count);
@@ -21,12 +21,14 @@ function App() {
 
   const handleInc = () =>  {
     // console.log('handleInc', tg);
-    console.log('handleInc', setVisitCount(1));
+    // console.log('handleInc', setVisitCount(1));
+    setCountState(prev => prev+1)
   }
 
   const handleDec = () =>  {
     // console.log('handleDec', tg);
-    console.log('handleDec', setVisitCount(-1));
+    // console.log('handleDec', setVisitCount(-1));
+    setCountState(prev => prev-1)
   }
 
   const handleClick = () =>  {
@@ -38,11 +40,11 @@ function App() {
     <div className="App">
       <header>
         <h1>
-          Hello, {tg.initDataUnsafe.user.first_name}
+          {/* Hello, {tg.initDataUnsafe.user.first_name} */}
         </h1>
       </header>
 
-      <p>You have been there <StrongText>{count}</StrongText> times!</p>
+      <p>You have been there <StrongText>{countState}</StrongText> times!</p>
       <button onClick={handleInc}>Inc</button>
       <button onClick={handleDec}>Dec</button>
       <button onClick={handleClick}>GET COUNT</button>

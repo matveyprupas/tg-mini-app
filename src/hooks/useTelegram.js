@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const tg = window.Telegram.WebApp;
-tg.CloudStorage.setItem('visitCount', 666);
+// tg.CloudStorage.setItem('visitCount', 666);
 
 
 export const useTelegram = () => {
