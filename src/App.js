@@ -37,7 +37,7 @@ function App() {
       
       <main>
         <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 items-center'>
           <Button onClick={handleInc}>Inc</Button>
           <Button onClick={handleDec}>Dec</Button>
           <Button onClick={handleClick}>GET COUNT</Button>
