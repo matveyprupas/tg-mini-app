@@ -12,26 +12,8 @@ export const useVisitCount = () => {
   // }
 
   useEffect(() => {
-    tg.CloudStorage.getItem('visits', (error, value) => {
-      console.log('useEffect callback start', error, value);
-      if(error) throw error;
-
-      console.log('useEffect callback end', error, value);
-
-      
-      // setCount(value[userId] ? value[userId] : 0)
-      
-      if(typeof value === 'object') {
-        setVisits(value);
-        setCount(value[userId]);
-      } else {
-        const newValue = {
-          userId: 0
-        };
-
-        setVisits(newValue);
-        setCount(newValue[userId]);
-      }
+    tg.CloudStorage.setItem('visits', {
+      userId: 0
     });
   }, [userId, tg.CloudStorage]);
 
