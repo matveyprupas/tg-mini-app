@@ -14,8 +14,10 @@ export const useTelegram = () => {
 
       console.log('useEffect callback end', error, value);
 
-      if(value) {
-        setCount(parseInt(value));
+      if(value && typeof value === 'number') {
+        setCount(value);
+      } else {
+        setCount(0);
       }
     });
   }, []);
