@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 
@@ -10,20 +10,20 @@ import { useTelegram } from './hooks/useTelegram';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, setVisitCount, getVisitCount} = useTelegram();
+  const {tg, getVisitCount, count} = useTelegram();
 
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    (async () => {
-      const count = await getVisitCount();
-      setCount(count);
-    })();
-  });
+  // useEffect(() => {
+  //   (async () => {
+  //     const count = await getVisitCount();
+  //     // setCount(count);
+  //   })();
+  // });
 
   const handleClick = () =>  {
     console.log('handleClick', tg);
-    console.log('handleClick', setVisitCount());
+    console.log('handleClick', getVisitCount());
   }
   return (
     <div className="App">
