@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { useTelegram } from './hooks/useTelegram';
+import { StrongText } from './components/StrongText';
 
 
 // Сделать телеграм веб апп, который:
@@ -10,18 +11,29 @@ import { useTelegram } from './hooks/useTelegram';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount, count} = useTelegram();
+  const {tg, setVisitCount, getVisitCount, count} = useTelegram();
 
-  const [countState, setCountState] = useState(count);
+  // const [countState, setCountState] = useState(count);
 
-  useEffect(() => {
-    setCountState(count);
-  }, [count]);
+  // useEffect(() => {
+  //   // setCountState(count);
+  // }, [count]);
+
+  const handleInc = () =>  {
+    // console.log('handleInc', tg);
+    console.log('handleInc', setVisitCount(1));
+  }
+
+  const handleDec = () =>  {
+    // console.log('handleDec', tg);
+    console.log('handleDec', setVisitCount(-1));
+  }
 
   const handleClick = () =>  {
     console.log('handleClick', tg);
-    console.log('handleClick', getVisitCount());
+    console.log('handleClick', getVisitCount(-1));
   }
+
   return (
     <div className="App">
       <header>
@@ -30,8 +42,10 @@ function App() {
         </h1>
       </header>
 
-      <p>You have been there {countState} times!</p>
-      <button onClick={handleClick}>Button</button>
+      <p>You have been there <StrongText>{count}</StrongText> times!</p>
+      <button onClick={handleInc}>Inc</button>
+      <button onClick={handleDec}>Dec</button>
+      <button onClick={handleClick}>GET COUNT</button>
     </div>
   );
 }
