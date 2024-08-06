@@ -19,7 +19,7 @@ export const useVisitCount = () => {
 
       setCount(value[userId] ? value[userId] : 0)
     });
-  }, [userId]);
+  }, [userId, tg.CloudStorage]);
 
   useEffect(() => {
     if(count === null) return;
@@ -33,7 +33,7 @@ export const useVisitCount = () => {
       });
     });
     
-  }, [count]);
+  }, [count, tg.CloudStorage]);
 
   const getVisitCount = () => {
     return count;
