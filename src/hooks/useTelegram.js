@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 
 const tg = window.Telegram.WebApp;
-tg.CloudStorage.setItem('visitCount', 0);
+// tg.CloudStorage.setItem('visitCount', 0);
 
 
 export const useTelegram = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(null);
 
   useEffect(() => {
-    // setCount();
+    tg.CloudStorage.getItem('visitCount', (error, value) => {
+      console.log('useEffect callback start', error, value);
+      if(error) throw error;
+
+      console.log('useEffect callback end', error, value);
+
+      if(value) {
+        setCount(value);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     tg.CloudStorage.setItem('visitCount', count);
   }, [count]);
 
