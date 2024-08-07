@@ -6,7 +6,7 @@ const tg = window.Telegram.WebApp;
 export const useTelegram = () => {
   const currentQueryId = tg.initDataUnsafe.query_id;
   const [count, setCount] = useState(null);
-  // const [lastQueryId, setLastQueryId] = useState(null);
+  const [lastQueryId, setLastQueryId] = useState(null);
 
   useEffect(() => {
     tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
@@ -15,14 +15,10 @@ export const useTelegram = () => {
       console.log('lastQueryId', error, lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
       if(!lastQueryIdValue) {
-        setCount(1);
-        tg.CloudStorage.setItem('visitCount', count);
-        tg.CloudStorage.setItem('lastQueryId', currentQueryId);
+        setLastQueryId(currentQueryId);
       } else if(currentQueryId !== lastQueryIdValue) {
-        // setLastQueryId(currentQueryId);
+        setLastQueryId(currentQueryId);
         setCount(prevCount => prevCount + 1);
-        tg.CloudStorage.setItem('visitCount', count);
-        tg.CloudStorage.setItem('lastQueryId', currentQueryId);
       }
     });
   });
@@ -33,29 +29,32 @@ export const useTelegram = () => {
 
       console.log('visitCount', error, countValue);
 
-      if(countValue) {
-        setCount(parseInt(countValue));
-      } else {
+      if(!countValue) {
         setCount(1);
+      } else {
+        setCount(parseInt(countValue));
       }
     });
   }, []);
 
-  // useEffect(() => {
-  //   tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
-  // }, [currentQueryId]);
+  useEffect(() => {
+    tg.CloudStorage.setItem('visitCount', count);
+  }, [count]);
+  useEffect(() => {
+    tg.CloudStorage.setItem('lastQueryId', lastQueryId);
+  }, [lastQueryId]);
 
   const getVisitCount = () => {
     return count;
   }
 
-  // const setVisitCount = (amount) => {
-  //   setCount(prev => prev + amount);
-  // }
+  const removeLastQueryId = () => {
+    tg.CloudStorage.removeItem('lastQueryId');
+  }
 
   return ({
     tg,
     getVisitCount,
-    // setVisitCount
+    removeLastQueryId
   })
 }

@@ -13,7 +13,7 @@ import { Greeting } from './components/Greeting/Greeting';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount} = useTelegram();
+  const {tg, getVisitCount, removeLastQueryId} = useTelegram();
   // const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
 
 
@@ -29,10 +29,11 @@ function App() {
     console.log('handleClick', getVisitCount(), tg);
     // console.log('handleClick', );
   }
-  // const handleClick2 = () =>  {
-  //   // console.log('handleClick', tg);
-  //   console.log('handleClick', getVisits());
-  // }
+  const handleClick2 = () =>  {
+    // console.log('handleClick', tg);
+    // console.log('handleClick', getVisits());
+    removeLastQueryId()
+  }
 
   return (
     <div className="text-center">
@@ -50,7 +51,7 @@ function App() {
           {/* <Button onClick={handleInc}>Inc</Button>
           <Button onClick={handleDec}>Dec</Button> */}
           <Button onClick={handleClick}>GET COUNT</Button>
-          {/* <Button onClick={handleClick2}>GET Visits</Button> */}
+          <Button onClick={handleClick2}>DEL query_id</Button>
         </div>
       </main>
     </div>
