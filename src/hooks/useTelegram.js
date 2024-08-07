@@ -21,7 +21,7 @@ export const useTelegram = () => {
         setCount(prevCount => prevCount + 1);
       }
     });
-  });
+  }, [currentQueryId]);
 
   useEffect(() => {
     tg.CloudStorage.getItem('visitCount', (error, countValue) => {
