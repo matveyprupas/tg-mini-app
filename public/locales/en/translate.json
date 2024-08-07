@@ -1,0 +1,4 @@
+{
+  "greeting": "Hello, ",
+  "visits": "You have been there {{visits}} times!"
+}

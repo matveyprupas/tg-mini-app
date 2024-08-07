@@ -2,18 +2,23 @@ import { useCloudStorage, useInitData } from '@vkruglikov/react-telegram-web-app
 import { useEffect, useState } from 'react';
 import { Greeting } from './components/Greeting';
 import { Visits } from './components/Visits';
+import { LANGUAGE_CODE } from './utils/textUtils';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [initDataUnsafe] = useInitData();
   const currentQueryId = initDataUnsafe?.query_id;
   const {getItem, setItem} = useCloudStorage();
   const [visits, setVisits] = useState<number | null>(null);
+  const {i18n} = useTranslation();
 
   // const handleClear = useCallback(() => {
   //   setItem('visitCount', '')
   //   setItem('lastQueryId', '')
   // }, [setItem])
-
+  const languageCode: LANGUAGE_CODE = initDataUnsafe?.user?.language_code as LANGUAGE_CODE || LANGUAGE_CODE.EN;
+  i18n.changeLanguage(languageCode);
+  
   useEffect(() => {
     if(!currentQueryId) return
 
