@@ -1,4 +1,5 @@
 {
   "greeting": "Hello, ",
-  "visits": "You have been there {{visits}} times!"
+  "visits": "You have been there {{visits}} times!",
+  "forbidden": "{{name}}, didn't your mom tell you when you were a kid that peeping was wrong?"
 }

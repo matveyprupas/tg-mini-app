@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
+
 export const Forbidden = () => {
+  const {t} = useTranslation();
   return (
     <div className="">
-      Where are you going?
+      <p>{t('forbidden')}</p>
     </div>
   );
 }
