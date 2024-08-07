@@ -37,7 +37,8 @@ function App() {
           } 
         } else {
           setVisits(1);
-          setItem('visitCount', (1).toString())
+          setItem('visitCount', (1).toString());
+          setItem('lastQueryId', currentQueryId)
         }
 
       });
