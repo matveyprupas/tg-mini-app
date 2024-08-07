@@ -43,7 +43,9 @@ export const useTelegram = () => {
 
       console.log('CHECK lastQueryId', error, lastQueryIdValue, !lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
-      if(currentQueryId !== lastQueryIdValue) {
+      if(!lastQueryIdValue) {
+        setLastQueryId(currentQueryId);
+      } else if(currentQueryId !== lastQueryIdValue) {
         setLastQueryId(currentQueryId);
         setCount(prevCount => prevCount + 1);
       }
