@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { StrongText } from "./StrongText";
 import { useTranslation } from "react-i18next";
 
 interface GreetingProps {
@@ -11,9 +10,7 @@ export const Greeting = ({children}: GreetingProps) => {
   return (
     <h1 className='text-xl font-bold'>
       {t('greeting')}
-      <StrongText>
-        {children}
-      </StrongText>
+      {children}
     </h1>
   );
 }

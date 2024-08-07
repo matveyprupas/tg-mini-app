@@ -15,7 +15,6 @@ export const Main = () => {
   const languageCode: LANGUAGE_CODE = initDataUnsafe?.user?.language_code as LANGUAGE_CODE || LANGUAGE_CODE.EN;
   
   useEffect(() => {
-    console.log('languageCode: ', languageCode)
     i18n.changeLanguage(languageCode);
   }, [i18n, languageCode])
 
@@ -25,12 +24,6 @@ export const Main = () => {
     getItem('lastQueryId').then(lastQueryId => {
 
       getItem('visitCount').then(visitCount => {
-
-        // console.log('lastQueryId:', lastQueryId)
-        // console.log('visitCount:', visitCount)
-        // console.log('+visitCount:', +visitCount)
-        // console.log('currentQueryId:', currentQueryId)
-        // console.log('lastQueryId !== currentQueryId:', lastQueryId !== currentQueryId)
 
         if(+visitCount) {
           if(lastQueryId !== currentQueryId) {
@@ -56,14 +49,6 @@ export const Main = () => {
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
       </header>
       {visits && <Visits visits={visits} />}
-      {/* <button onClick={handleClear}>Delete history</button> */}
-      
-      {/* <button type="button" onClick={() => changeLanguage('ru')}>
-        ru
-      </button>
-      <button type="button" onClick={() => changeLanguage('en')}>
-        en
-      </button> */}
     </div>
   );
 }
