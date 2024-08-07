@@ -62,7 +62,11 @@ export const useTelegram = () => {
   }, [lastQueryId]);
 
   const getVisitCount = () => {
-    return ({count, lastQueryId});
+    return count;
+  }
+
+  const getLastQueryId = () => {
+    return lastQueryId;
   }
 
   const removeLastQueryId = () => {
@@ -73,6 +77,7 @@ export const useTelegram = () => {
   return ({
     tg,
     getVisitCount,
+    getLastQueryId,
     removeLastQueryId
   })
 }

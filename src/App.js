@@ -13,7 +13,7 @@ import { Greeting } from './components/Greeting/Greeting';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount, removeLastQueryId} = useTelegram();
+  const {tg, getVisitCount, getLastQueryId, removeLastQueryId} = useTelegram();
   // const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
 
 
@@ -46,6 +46,8 @@ function App() {
       
       <main>
         <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
+        <p>Last query_id <StrongText>{getLastQueryId()}</StrongText>!</p>
+        <p>Current query_id <StrongText>{tg.initDataUnsafe.query_id}</StrongText>!</p>
         <p>Your language_code is <StrongText>{tg.initDataUnsafe.user.language_code}</StrongText>!</p>
         <div className='flex flex-col gap-4 items-center'>
           {/* <Button onClick={handleInc}>Inc</Button>
