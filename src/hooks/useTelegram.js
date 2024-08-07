@@ -12,7 +12,7 @@ export const useTelegram = () => {
     tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
       if(error) throw error;
 
-      console.log('lastQueryId', error, lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
+      console.log('lastQueryId', error, lastQueryIdValue, !lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
       if(!lastQueryIdValue) {
         setLastQueryId(currentQueryId);
