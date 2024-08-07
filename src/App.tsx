@@ -17,17 +17,19 @@ function App() {
     });
   }, [getKeys, getItems]);
 
+  console.log('App render: ', keys, items);
+
   return (
-    <div className="App">
+    <div className="App flex flex-col gap-4 items-center">
       <header className="App-header font-bold">
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
       </header>
 
       <h3>Keys</h3>
-      {keys.map(el => <p key={el}>{el}</p>)}
+      {keys.length && keys.map(el => <p key={el}>{el}</p>)}
       
       <h3>Items</h3>
-      {items.map(el => <p key={el}>{el}</p>)}
+      {items.length && items.map(el => <p key={el}>{el}</p>)}
     </div>
   );
 }
