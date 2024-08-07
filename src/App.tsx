@@ -1,5 +1,5 @@
 import { useCloudStorage, useInitData } from '@vkruglikov/react-telegram-web-app';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Greeting } from './components/Greeting';
 import { Visits } from './components/Visits';
 
@@ -9,10 +9,10 @@ function App() {
   const {getItem, setItem} = useCloudStorage();
   const [visits, setVisits] = useState<number | null>(null);
 
-  const handleClear = useCallback(() => {
-    setItem('visitCount', '')
-    setItem('lastQueryId', '')
-  }, [setItem])
+  // const handleClear = useCallback(() => {
+  //   setItem('visitCount', '')
+  //   setItem('lastQueryId', '')
+  // }, [setItem])
 
   useEffect(() => {
     if(!currentQueryId) return
@@ -21,11 +21,11 @@ function App() {
 
       getItem('visitCount').then(visitCount => {
 
-        console.log('lastQueryId:', lastQueryId)
-        console.log('visitCount:', visitCount)
-        console.log('+visitCount:', +visitCount)
-        console.log('currentQueryId:', currentQueryId)
-        console.log('lastQueryId !== currentQueryId:', lastQueryId !== currentQueryId)
+        // console.log('lastQueryId:', lastQueryId)
+        // console.log('visitCount:', visitCount)
+        // console.log('+visitCount:', +visitCount)
+        // console.log('currentQueryId:', currentQueryId)
+        // console.log('lastQueryId !== currentQueryId:', lastQueryId !== currentQueryId)
 
         if(+visitCount) {
           if(lastQueryId !== currentQueryId) {
@@ -51,7 +51,7 @@ function App() {
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
       </header>
       {visits && <Visits visits={visits} />}
-      <button onClick={handleClear}>Delete history</button>
+      {/* <button onClick={handleClear}>Delete history</button> */}
     </div>
   );
 }
