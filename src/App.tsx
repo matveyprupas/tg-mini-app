@@ -15,7 +15,7 @@ function App() {
       setKeys(keys)
       getItems(keys).then(items => setItems(items));
     });
-  }, [getKeys]);
+  }, [getKeys, getItems]);
 
   return (
     <div className="App">
