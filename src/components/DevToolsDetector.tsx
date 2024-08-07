@@ -6,11 +6,11 @@ export const DevToolsDetector = () => {
   const [text, setText] = useState('');
 
   addListener(
-    (isOpen) =>
-      setText(isOpen
-        ? 'devtools status: open'
-        : 'devtools status: close')
-  );  
+    (isOpen) => {
+      const text = isOpen ? 'open' : 'close';
+      setText(text)
+    }
+  );
   
   return (
     <div className="">
