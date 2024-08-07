@@ -17,6 +17,12 @@ function App() {
 
       getItem('visitCount').then(visitCount => {
 
+        console.log('lastQueryId:', lastQueryId)
+        console.log('visitCount:', visitCount)
+        console.log('+visitCount:', +visitCount)
+        console.log('currentQueryId:', currentQueryId)
+        console.log('lastQueryId !== currentQueryId:', lastQueryId !== currentQueryId)
+
         if(+visitCount) {
           if(lastQueryId !== currentQueryId) {
             setVisits(+visitCount + 1);
@@ -26,7 +32,8 @@ function App() {
             setVisits(+visitCount)
           } 
         } else {
-          setVisits(1)
+          setVisits(1);
+          setItem('visitCount', (1).toString())
         }
 
       });
@@ -52,8 +59,8 @@ function App() {
       <h3>Keys</h3>
       {keys.length && keys.map(el => <p key={el}>{el}</p>)}
       
-      <h3>Items</h3>
-      {items.length && items.map(el => <p key={el}>{el}</p>)}
+      {/* <h3>Items</h3>
+      {items.length && items.map(el => <p key={el}>{el}</p>)} */}
     </div>
   );
 }
