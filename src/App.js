@@ -2,6 +2,7 @@
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
 import { Button } from './components/Button';
+import { Greeting } from './components/Greeting';
 // import { useVisitCount } from './hooks/useVisitCount';
 
 
@@ -36,13 +37,15 @@ function App() {
   return (
     <div className="text-center">
       <header>
-        <h1 className='text-xl font-bold'>
+      <Greeting>{tg.initDataUnsafe.user.first_name}</Greeting>
+        {/* <h1 className='text-xl font-bold'>
           Hello, {tg.initDataUnsafe.user.first_name}
-        </h1>
+        </h1> */}
       </header>
       
       <main>
         <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
+        <p>Your language_code is <StrongText>{tg.initDataUnsafe.user.language_code}</StrongText>!</p>
         <div className='flex flex-col gap-4 items-center'>
           <Button onClick={handleInc}>Inc</Button>
           <Button onClick={handleDec}>Dec</Button>
