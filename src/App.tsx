@@ -13,6 +13,7 @@ function App() {
   const [isDevToolsOpen, setIsDevToolsOpen] = useState(false);
 
   const handleSwitch = () => {
+    console.log(isDevToolsOpen)
     setIsDevToolsOpen(prev => !prev);
   }
   
