@@ -17,12 +17,12 @@ export const useTelegram = () => {
       if(!lastQueryIdValue) {
         setCount(1);
         tg.CloudStorage.setItem('visitCount', count);
-        tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+        tg.CloudStorage.setItem('lastQueryId', currentQueryId);
       } else if(currentQueryId !== lastQueryIdValue) {
         // setLastQueryId(currentQueryId);
         setCount(prevCount => prevCount + 1);
         tg.CloudStorage.setItem('visitCount', count);
-        tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+        tg.CloudStorage.setItem('lastQueryId', currentQueryId);
       }
     });
   });
@@ -39,9 +39,11 @@ export const useTelegram = () => {
         setCount(1);
       }
     });
-
-    tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
   }, []);
+
+  // useEffect(() => {
+  //   tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+  // }, [currentQueryId]);
 
   const getVisitCount = () => {
     return count;
