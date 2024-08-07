@@ -17,8 +17,13 @@ function App() {
   //   setItem('lastQueryId', '')
   // }, [setItem])
   const languageCode: LANGUAGE_CODE = initDataUnsafe?.user?.language_code as LANGUAGE_CODE || LANGUAGE_CODE.EN;
-  i18n.changeLanguage(languageCode);
   
+  
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    console.log('lng: ', lng, 'languageCode: ', languageCode)
+  };
+
   useEffect(() => {
     if(!currentQueryId) return
 
@@ -57,6 +62,13 @@ function App() {
       </header>
       {visits && <Visits visits={visits} />}
       {/* <button onClick={handleClear}>Delete history</button> */}
+      
+      <button type="button" onClick={() => changeLanguage('ru')}>
+        ru
+      </button>
+      <button type="button" onClick={() => changeLanguage('en')}>
+        en
+      </button>
     </div>
   );
 }
