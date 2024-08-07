@@ -2,7 +2,7 @@ import { useCloudStorage, useInitData } from '@vkruglikov/react-telegram-web-app
 import { useEffect, useState } from 'react';
 import { Greeting } from './components/Greeting';
 import { Visits } from './components/Visits';
-import { LANGUAGE_CODE } from './utils/textUtils';
+import { LANGUAGE_CODE } from './constants/i18n';
 import { useTranslation } from 'react-i18next';
 
 function App() {
@@ -12,18 +12,8 @@ function App() {
   const [visits, setVisits] = useState<number | null>(null);
   const {i18n} = useTranslation();
 
-  // const handleClear = useCallback(() => {
-  //   setItem('visitCount', '')
-  //   setItem('lastQueryId', '')
-  // }, [setItem])
   const languageCode: LANGUAGE_CODE = initDataUnsafe?.user?.language_code as LANGUAGE_CODE || LANGUAGE_CODE.EN;
   
-  
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    console.log('lng: ', lng, 'languageCode: ', languageCode)
-  };
-
   useEffect(() => {
     console.log('languageCode: ', languageCode)
     i18n.changeLanguage(languageCode);
@@ -68,12 +58,12 @@ function App() {
       {visits && <Visits visits={visits} />}
       {/* <button onClick={handleClear}>Delete history</button> */}
       
-      <button type="button" onClick={() => changeLanguage('ru')}>
+      {/* <button type="button" onClick={() => changeLanguage('ru')}>
         ru
       </button>
       <button type="button" onClick={() => changeLanguage('en')}>
         en
-      </button>
+      </button> */}
     </div>
   );
 }

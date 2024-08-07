@@ -1,5 +1,4 @@
-import { getContentText, LANGUAGE_CODE } from "../utils/textUtils";
-import { useInitData } from "@vkruglikov/react-telegram-web-app";
+import { useTranslation } from "react-i18next";
 
 interface VisitsProps {
   visits: number
@@ -7,10 +6,9 @@ interface VisitsProps {
 
 
 export const Visits = ({visits}: VisitsProps) => {
-  const [initDataUnsafe] = useInitData();
+  const {t} = useTranslation()
 
-  const languageCode: LANGUAGE_CODE = initDataUnsafe?.user?.language_code as LANGUAGE_CODE || LANGUAGE_CODE.EN;
   return (
-    <p>{getContentText(languageCode, visits)}</p>
+    <p>{t('visits', { visits: visits })}</p>
   );
 }

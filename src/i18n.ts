@@ -13,7 +13,7 @@ const resources = {
   }
 };
 
-console.log(resources);
+// console.log(resources);
 
 i18n
   .use(initReactI18next)
