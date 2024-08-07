@@ -25,6 +25,11 @@ function App() {
   };
 
   useEffect(() => {
+    console.log('languageCode: ', languageCode)
+    i18n.changeLanguage(languageCode);
+  }, [i18n, languageCode])
+
+  useEffect(() => {
     if(!currentQueryId) return
 
     getItem('lastQueryId').then(lastQueryId => {
