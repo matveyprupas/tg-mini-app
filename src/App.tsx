@@ -25,14 +25,22 @@ function App() {
 
         <Switch>
           <Route path="/forbidden">
-            <Forbidden />
+            {!isDevToolsOpen ? 
+              <Redirect
+                to={{
+                  pathname: "/",
+                }}
+              /> : 
+              <Forbidden />}
           </Route>
           <Route path="/">
-            {isDevToolsOpen ? <Redirect
-            to={{
-              pathname: "/forbidden",
-            }}
-          />  : <Main />}
+            {isDevToolsOpen ? 
+              <Redirect
+              to={{
+                pathname: "/forbidden",
+              }}
+            />  : 
+            <Main />}
           </Route>
         </Switch>
       </div>
