@@ -9,31 +9,21 @@ export const useTelegram = () => {
   // const [lastQueryId, setLastQueryId] = useState(null);
 
   useEffect(() => {
-    tg.CloudStorage.getItem('visitCount', (error, countValue) => {
+    tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
       if(error) throw error;
 
-      console.log('visitCount', error, countValue);
+      console.log('lastQueryId', error, lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
-      // if(countValue) {
-      //   setCount(parseInt(countValue));
-      // }
-
-      tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
-        if(error) throw error;
-
-        console.log('lastQueryId', error, lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
-
-        if(!lastQueryIdValue) {
-          setCount(1);
-          tg.CloudStorage.setItem('visitCount', count);
-          tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
-        } else if(currentQueryId !== lastQueryIdValue) {
-          // setLastQueryId(currentQueryId);
-          setCount(prevCount => prevCount + 1);
-          tg.CloudStorage.setItem('visitCount', count);
-          tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
-        }
-      });
+      if(!lastQueryIdValue) {
+        setCount(1);
+        tg.CloudStorage.setItem('visitCount', count);
+        tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+      } else if(currentQueryId !== lastQueryIdValue) {
+        // setLastQueryId(currentQueryId);
+        setCount(prevCount => prevCount + 1);
+        tg.CloudStorage.setItem('visitCount', count);
+        tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+      }
     });
   });
 
@@ -48,7 +38,9 @@ export const useTelegram = () => {
       } else {
         setCount(1);
       }
-    })
+    });
+
+    tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
   }, []);
 
   const getVisitCount = () => {
