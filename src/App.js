@@ -13,17 +13,17 @@ import { Greeting } from './components/Greeting';
 // - при попытке дебажить - очищать адресную строку и выдавать сообщение, что нельзя подсматривать
 
 function App() {
-  const {tg, getVisitCount, setVisitCount} = useTelegram();
+  const {tg, getVisitCount} = useTelegram();
   // const {getVisitCount, setVisitCount, getVisits} = useVisitCount();
 
 
-  const handleInc = () =>  {
-    setVisitCount(1)
-  }
+  // const handleInc = () =>  {
+  //   setVisitCount(1)
+  // }
 
-  const handleDec = () =>  {
-    setVisitCount(-1)
-  }
+  // const handleDec = () =>  {
+  //   setVisitCount(-1)
+  // }
 
   const handleClick = () =>  {
     console.log('handleClick', getVisitCount(), tg);
@@ -47,8 +47,8 @@ function App() {
         <p>You have been there <StrongText>{getVisitCount()}</StrongText> times!</p>
         <p>Your language_code is <StrongText>{tg.initDataUnsafe.user.language_code}</StrongText>!</p>
         <div className='flex flex-col gap-4 items-center'>
-          <Button onClick={handleInc}>Inc</Button>
-          <Button onClick={handleDec}>Dec</Button>
+          {/* <Button onClick={handleInc}>Inc</Button>
+          <Button onClick={handleDec}>Dec</Button> */}
           <Button onClick={handleClick}>GET COUNT</Button>
           {/* <Button onClick={handleClick2}>GET Visits</Button> */}
         </div>

@@ -4,39 +4,50 @@ const tg = window.Telegram.WebApp;
 
 
 export const useTelegram = () => {
-  const [count, setCount] = useState(null);
+  const currentQueryId = tg.initDataUnsafe.query_id;
+  const [count, setCount] = useState(1);
+  // const [lastQueryId, setLastQueryId] = useState(null);
 
   useEffect(() => {
-    tg.CloudStorage.getItem('visitCount', (error, value) => {
-      console.log('useEffect callback start', error, value);
+    tg.CloudStorage.getItem('visitCount', (error, countValue) => {
       if(error) throw error;
 
-      console.log('useEffect callback end', error, value);
+      console.log('visitCount', error, countValue);
 
-      if(value) {
-        setCount(parseInt(value));
-      } else {
-        setCount(0);
+      if(countValue) {
+        setCount(parseInt(countValue));
       }
-    });
-  }, []);
 
-  useEffect(() => {
-    if(count === null) return;
-    tg.CloudStorage.setItem('visitCount', count);
-  }, [count]);
+      tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
+        if(error) throw error;
+
+        console.log('lastQueryId', error, countValue);
+
+        if(lastQueryIdValue && currentQueryId !== lastQueryIdValue) {
+          // setLastQueryId(currentQueryId);
+          setCount(prevCount => prevCount + 1);
+          tg.CloudStorage.setItem('visitCount', count);
+        }
+      });
+    });
+  }, [count, currentQueryId]);
+
+  // useEffect(() => {
+  //   if(count === null) return;
+  //   tg.CloudStorage.setItem('visitCount', count);
+  // }, [count]);
 
   const getVisitCount = () => {
     return count;
   }
 
-  const setVisitCount = (amount) => {
-    setCount(prev => prev + amount);
-  }
+  // const setVisitCount = (amount) => {
+  //   setCount(prev => prev + amount);
+  // }
 
   return ({
     tg,
     getVisitCount,
-    setVisitCount
+    // setVisitCount
   })
 }
