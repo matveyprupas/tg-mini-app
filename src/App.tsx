@@ -7,7 +7,8 @@ import {
 import { Main } from "./components/Main";
 import { Forbidden } from "./components/Forbidden";
 import { useState } from "react";
-import { DevToolsDetector } from "./components/DevToolsDetector";
+// import { DevToolsDetector } from "./components/DevToolsDetector";
+import { addListener, launch } from 'devtools-detector';
 
 function App() {
 
@@ -17,13 +18,20 @@ function App() {
     console.log(isDevToolsOpen)
     setIsDevToolsOpen(prev => !prev);
   }
+
+  addListener(
+    (isOpen) => {
+      setIsDevToolsOpen(isOpen)
+    }
+  );
+  launch();
   
   return (
     <Router>
       <div>
         <button className="bg-gray-100 border rounded-lg hover:bg-gray-300" onClick={handleSwitch}>Toggle</button>
 
-        <DevToolsDetector/>
+        {/* <DevToolsDetector/> */}
 
         <Switch>
           <Route path="/forbidden">
