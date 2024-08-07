@@ -2,7 +2,7 @@
 import { useTelegram } from './hooks/useTelegram';
 import { StrongText } from './components/StrongText';
 import { Button } from './components/Button';
-import { Greeting } from './components/Greeting';
+import { Greeting } from './components/Greeting/Greeting';
 // import { useVisitCount } from './hooks/useVisitCount';
 
 
