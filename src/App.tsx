@@ -1,6 +1,7 @@
 import { useCloudStorage, useInitData } from '@vkruglikov/react-telegram-web-app';
 import { useEffect, useState } from 'react';
-import { Greeting } from './components/Greeting/Greeting';
+import { Greeting } from './components/Greeting';
+import { Visits } from './components/Visits';
 
 function App() {
   const [initDataUnsafe] = useInitData();
@@ -42,8 +43,8 @@ function App() {
     <div className="App flex flex-col gap-4 items-center">
       <header className="App-header font-bold">
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
+        <Visits visits={visits} />
       </header>
-      <p>You have been there {visits} times!</p>
     </div>
   );
 }
