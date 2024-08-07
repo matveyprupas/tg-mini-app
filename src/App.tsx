@@ -5,11 +5,16 @@ import { Greeting } from './components/Greeting/Greeting';
 function App() {
   const [initDataUnsafe] = useInitData();
 
-  const {getKeys} = useCloudStorage();
+  const {getKeys, getItems} = useCloudStorage();
   const [keys, setKeys] = useState<string[]>([]);
+  const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    getKeys().then(response => setKeys(response));
+    
+    getKeys().then(keys => {
+      setKeys(keys)
+      getItems(keys).then(items => setItems(items));
+    });
   }, [getKeys]);
 
   return (
@@ -18,7 +23,11 @@ function App() {
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
       </header>
 
-      {keys.map(el => <span key={el}>{el}</span>)}
+      <h3>Keys</h3>
+      {keys.map(el => <p key={el}>{el}</p>)}
+      
+      <h3>Items</h3>
+      {items.map(el => <p key={el}>{el}</p>)}
     </div>
   );
 }
