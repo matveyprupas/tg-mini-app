@@ -6,14 +6,37 @@ const tg = window.Telegram.WebApp;
 export const useTelegram = () => {
   const currentQueryId = tg.initDataUnsafe.query_id;
   const [count, setCount] = useState(null);
-  // const [lastQueryId, setLastQueryId] = useState(null);
+  const [lastQueryId, setLastQueryId] = useState(null);
 
-  // INITIAL CLOUD ITEMS
+  // INITIAL CLOUD visitCount
   useEffect(() => {
-    tg.CloudStorage.setItem('visitCount', 1);
-    tg.CloudStorage.setItem('lastQueryId', '');
+    tg.CloudStorage.getItem('visitCount', (error, countValue) => {
+      if(error) throw error;
+      console.log('visitCount', error, countValue);
+
+      if(!countValue) {
+        setCount(1);
+      } else {
+        setCount(parseInt(countValue));
+      }
+    });
   }, []);
 
+  // INITIAL CLOUD lastQueryId
+  useEffect(() => {    
+    tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
+      if(error) throw error;
+      console.log('lastQueryId', error, lastQueryIdValue);
+
+      if (!lastQueryIdValue) {
+        setLastQueryId(currentQueryId)
+      } else {
+        setLastQueryId(lastQueryIdValue)
+      }
+    });
+  }, [currentQueryId]);
+
+  // CHECK if currentQueryId !== lastQueryIdValue
   useEffect(() => {
     tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
       if(error) throw error;
@@ -21,24 +44,25 @@ export const useTelegram = () => {
       console.log('lastQueryId', error, lastQueryIdValue, !lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
       if(currentQueryId !== lastQueryIdValue) {
-        tg.CloudStorage.setItem('lastQueryId', currentQueryId);
+        setLastQueryId(currentQueryId);
         setCount(prevCount => prevCount + 1);
       }
     });
   }, [currentQueryId]);
 
 
+  // UPDATE CLOUD visitCount
+  useEffect(() => {
+    tg.CloudStorage.setItem('visitCount', count);
+  }, [count]);
 
-  // useEffect(() => {
-  //   tg.CloudStorage.setItem('visitCount', count);
-  // }, [count]);
-
-  // useEffect(() => {
-  //   tg.CloudStorage.setItem('lastQueryId', lastQueryId);
-  // }, [lastQueryId]);
+  // UPDATE CLOUD lastQueryId
+  useEffect(() => {
+    tg.CloudStorage.setItem('lastQueryId', lastQueryId);
+  }, [lastQueryId]);
 
   const getVisitCount = () => {
-    return count;
+    return ({count, lastQueryId});
   }
 
   const removeLastQueryId = () => {
