@@ -43,7 +43,7 @@ function App() {
       <header className="App-header font-bold">
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
       </header>
-      <p>You have been there ${visits} times!</p>
+      <p>You have been there {visits} times!</p>
     </div>
   );
 }
