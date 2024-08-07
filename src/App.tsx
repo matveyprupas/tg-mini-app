@@ -1,5 +1,5 @@
 import { useCloudStorage, useInitData } from '@vkruglikov/react-telegram-web-app';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Greeting } from './components/Greeting';
 import { Visits } from './components/Visits';
 
@@ -8,6 +8,11 @@ function App() {
   const currentQueryId = initDataUnsafe?.query_id;
   const {getItem, setItem} = useCloudStorage();
   const [visits, setVisits] = useState<number | null>(null);
+
+  const handleClear = useCallback(() => {
+    setItem('visitCount', '')
+    setItem('lastQueryId', '')
+  }, [setItem])
 
   useEffect(() => {
     if(!currentQueryId) return
@@ -43,8 +48,9 @@ function App() {
     <div className="App flex flex-col gap-4 items-center">
       <header className="App-header font-bold">
         <Greeting>{initDataUnsafe?.user?.first_name}</Greeting>
-        <Visits visits={visits} />
       </header>
+      {visits && <Visits visits={visits} />}
+      <button onClick={handleClear}>Delete history</button>
     </div>
   );
 }

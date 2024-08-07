@@ -2,7 +2,7 @@ import { getContentText, LANGUAGE_CODE } from "../utils/textUtils";
 import { useInitData } from "@vkruglikov/react-telegram-web-app";
 
 interface VisitsProps {
-  visits: number | null
+  visits: number
 }
 
 

@@ -11,7 +11,7 @@ export const getGreetingText = (languageCode: LANGUAGE_CODE) => {
   }
 }
 
-export const getContentText = (languageCode: LANGUAGE_CODE, visits: number | null) => {
+export const getContentText = (languageCode: LANGUAGE_CODE, visits: number) => {
   if(languageCode === LANGUAGE_CODE.RU) {
     return `Ты был тут ${visits} раз!`;
   } else {
