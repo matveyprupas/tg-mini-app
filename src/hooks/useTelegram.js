@@ -23,7 +23,11 @@ export const useTelegram = () => {
 
         console.log('lastQueryId', error, lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
-        if(currentQueryId !== lastQueryIdValue) {
+        if(!lastQueryIdValue) {
+          setCount(1);
+          tg.CloudStorage.setItem('visitCount', count);
+          tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
+        } else if(currentQueryId !== lastQueryIdValue) {
           // setLastQueryId(currentQueryId);
           setCount(prevCount => prevCount + 1);
           tg.CloudStorage.setItem('visitCount', count);
