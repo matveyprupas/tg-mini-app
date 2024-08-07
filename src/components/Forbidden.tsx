@@ -6,8 +6,8 @@ export const Forbidden = () => {
   const [initDataUnsafe] = useInitData();
 
   return (
-    <div className="">
-      <p>{t('forbidden', { name: initDataUnsafe?.user?.first_name })}</p>
+    <div className="text-center">
+      <h2>{t('forbidden', { name: initDataUnsafe?.user?.first_name })}</h2>
     </div>
   );
 }
