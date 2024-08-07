@@ -7,6 +7,7 @@ import {
 import { Main } from "./components/Main";
 import { Forbidden } from "./components/Forbidden";
 import { useState } from "react";
+import { DevToolsDetector } from "./components/DevToolsDetector";
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
   return (
     <Router>
       <div>
-
+        <DevToolsDetector/>
+        
         <button className="bg-gray-100 border rounded-lg hover:bg-gray-300" onClick={handleSwitch}>Toggle</button>
 
         <Switch>
