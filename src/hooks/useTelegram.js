@@ -53,6 +53,8 @@ export const useTelegram = () => {
 
   // UPDATE CLOUD visitCount
   useEffect(() => {
+    if(count === null) return;
+    
     console.log('UPDATE visitCount', count);
 
     tg.CloudStorage.setItem('visitCount', count);
@@ -60,6 +62,8 @@ export const useTelegram = () => {
 
   // UPDATE CLOUD lastQueryId
   useEffect(() => {
+    if(lastQueryId === null) return;
+    
     console.log('UPDATE lastQueryId', lastQueryId);
 
     tg.CloudStorage.setItem('lastQueryId', lastQueryId);
