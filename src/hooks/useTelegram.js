@@ -49,6 +49,7 @@ export const useTelegram = () => {
   }
 
   const removeLastQueryId = () => {
+    tg.CloudStorage.removeItem('visitCount');
     tg.CloudStorage.removeItem('lastQueryId');
   }
 
