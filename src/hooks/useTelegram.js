@@ -27,6 +27,7 @@ export const useTelegram = () => {
           // setLastQueryId(currentQueryId);
           setCount(prevCount => prevCount + 1);
           tg.CloudStorage.setItem('visitCount', count);
+          tg.CloudStorage.setItem('lastQueryIdValue', currentQueryId);
         }
       });
     });
