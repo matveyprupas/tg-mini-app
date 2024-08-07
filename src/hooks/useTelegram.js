@@ -12,7 +12,7 @@ export const useTelegram = () => {
   useEffect(() => {
     tg.CloudStorage.getItem('visitCount', (error, countValue) => {
       if(error) throw error;
-      console.log('visitCount', error, countValue);
+      console.log('INITIAL visitCount', error, countValue);
 
       if(!countValue) {
         setCount(1);
@@ -26,7 +26,7 @@ export const useTelegram = () => {
   useEffect(() => {    
     tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
       if(error) throw error;
-      console.log('lastQueryId', error, lastQueryIdValue);
+      console.log('INITIAL lastQueryId', error, lastQueryIdValue);
 
       if (!lastQueryIdValue) {
         setLastQueryId(currentQueryId)
@@ -41,7 +41,7 @@ export const useTelegram = () => {
     tg.CloudStorage.getItem('lastQueryId', (error, lastQueryIdValue) => {
       if(error) throw error;
 
-      console.log('lastQueryId', error, lastQueryIdValue, !lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
+      console.log('CHECK lastQueryId', error, lastQueryIdValue, !lastQueryIdValue, currentQueryId, lastQueryIdValue !== currentQueryId);
 
       if(currentQueryId !== lastQueryIdValue) {
         setLastQueryId(currentQueryId);
@@ -53,11 +53,15 @@ export const useTelegram = () => {
 
   // UPDATE CLOUD visitCount
   useEffect(() => {
+    console.log('UPDATE visitCount', count);
+
     tg.CloudStorage.setItem('visitCount', count);
   }, [count]);
 
   // UPDATE CLOUD lastQueryId
   useEffect(() => {
+    console.log('UPDATE lastQueryId', lastQueryId);
+
     tg.CloudStorage.setItem('lastQueryId', lastQueryId);
   }, [lastQueryId]);
 
