@@ -26,13 +26,13 @@ function App() {
     const eventData: any = {
       req_id: 'TelegramWebviewProxy',
       method: 'devtools',
-      params: {
+      params: JSON.stringify({
         param1: 'param1',
         param2: 'param2'
-      }
+      })
     };
 
-    (window as any).TelegramWebviewProxy.postEvent(eventType, (eventData));
+    (window as any).TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
 
     // window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), '*');
   }
