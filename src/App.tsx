@@ -17,7 +17,7 @@ function App() {
       setIsDevToolsOpen(isOpen)
     }
   );
-  launch();
+  // launch();
 
   const handleClick = () => {
     console.log((window as any).Telegram.WebApp);
