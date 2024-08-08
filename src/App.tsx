@@ -34,8 +34,6 @@ function App() {
 
     (window as any).TelegramWebviewProxy.postEvent(eventType, eventData);
 
-    (window as any).external.notify(JSON.stringify({eventType: eventType, eventData: eventData}));
-
     window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), '*');
 
 
