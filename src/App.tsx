@@ -21,6 +21,24 @@ function App() {
 
   const handleClick = () => {
     console.log((window as any).Telegram.WebApp);
+
+    const eventType = 'web_app_invoke_custom_method';
+    const eventData: any = {
+      req_id: 'TelegramWebviewProxy',
+      method: 'devtools',
+      params: {
+        param1: 'param1',
+        param2: 'param2'
+      }
+    };
+
+    (window as any).TelegramWebviewProxy.postEvent(eventType, eventData);
+
+    (window as any).external.notify(JSON.stringify({eventType: eventType, eventData: eventData}));
+
+    window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), '*');
+
+
   }
   
   return (
