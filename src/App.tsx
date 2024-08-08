@@ -24,19 +24,13 @@ function App() {
 
     const eventType = 'web_app_invoke_custom_method';
     const eventData: any = {
-      req_id: 'TelegramWebviewProxy',
-      method: 'devtools',
-      params: JSON.stringify({
-        param1: 'param1',
-        param2: 'param2'
-      })
+      data: 'devtools'
     };
 
-    (window as any).TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
-    (window as any).TelegramWebviewProxy.postEvent('web_app_request_phone', null);
-    (window as any).TelegramWebviewProxy.postEvent('web_app_close');
+    // (window as any).TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
+    // (window as any).TelegramWebviewProxy.postEvent('web_app_request_phone', null);
+    (window as any).TelegramWebviewProxy.postEvent('web_app_data_send', JSON.stringify(eventData));
 
-    // window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), '*');
   }
   
   return (
