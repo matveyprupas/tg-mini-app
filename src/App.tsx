@@ -7,7 +7,7 @@ import {
 import { Main } from "./components/Main";
 import { Forbidden } from "./components/Forbidden";
 import { useState } from "react";
-import { addListener, launch } from 'devtools-detector';
+import { addListener } from 'devtools-detector';
 
 function App() {
   const [isDevToolsOpen, setIsDevToolsOpen] = useState(false);
