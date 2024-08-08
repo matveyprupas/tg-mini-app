@@ -22,7 +22,7 @@ function App() {
   const handleClick = () => {
     console.log((window as any).Telegram.WebApp);
 
-    const eventType = 'web_app_invoke_custom_method';
+    // const eventType = 'web_app_invoke_custom_method';
     const eventData: any = {
       data: 'devtools'
     };
@@ -30,6 +30,7 @@ function App() {
     // (window as any).TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
     // (window as any).TelegramWebviewProxy.postEvent('web_app_request_phone', null);
     (window as any).TelegramWebviewProxy.postEvent('web_app_data_send', JSON.stringify(eventData));
+    (window as any).TelegramWebviewProxy.postEvent('web_app_ready');
 
   }
   
