@@ -18,10 +18,15 @@ function App() {
     }
   );
   launch();
+
+  const handleClick = () => {
+    console.log((window as any).Telegram.WebApp);
+  }
   
   return (
     <Router>
       <div>
+        <button onClick={handleClick}>Click</button>
         <Switch>
           <Route path="/forbidden">
             {!isDevToolsOpen ? 
