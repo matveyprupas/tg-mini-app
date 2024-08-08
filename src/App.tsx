@@ -33,6 +33,8 @@ function App() {
     };
 
     (window as any).TelegramWebviewProxy.postEvent(eventType, JSON.stringify(eventData));
+    (window as any).TelegramWebviewProxy.postEvent('web_app_request_phone', null);
+    (window as any).TelegramWebviewProxy.postEvent('web_app_close');
 
     // window.parent.postMessage(JSON.stringify({eventType: eventType, eventData: eventData}), '*');
   }
